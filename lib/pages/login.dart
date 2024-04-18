@@ -168,7 +168,12 @@ class _LoginState extends State<Login> {
           await SessionManagement.storeUserData(sessionUserData);
         }
         // ignore: use_build_context_synchronously
-        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+        if(!userData?[0]['profile_completed']){
+          Navigator.pushNamedAndRemoveUntil(context, '/complete_profile', (route) => false);
+        }
+        else{
+          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+        }
       } catch (e) {
         print("Login Error ==== $e");
         // ignore: use_build_context_synchronously

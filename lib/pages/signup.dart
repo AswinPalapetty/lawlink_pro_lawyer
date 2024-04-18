@@ -237,7 +237,6 @@ class _SignupState extends State<Signup> {
           };
 
           final resp = await supabase.from('lawyers').upsert(userDetails);
-
           await SessionManagement.storeUserData({
             'userId': res.user!.id,
             'email': email,
@@ -248,7 +247,7 @@ class _SignupState extends State<Signup> {
           print('Insertion successful: $resp');
 
           // ignore: use_build_context_synchronously
-          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+          Navigator.pushNamedAndRemoveUntil(context, '/complete_profile', (route) => false);
         } catch (e) {
           print('insertion error =======  $e');
           await supabase.auth.admin.deleteUser(res.user!.id);

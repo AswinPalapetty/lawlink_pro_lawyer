@@ -51,8 +51,10 @@ class _LawyerHomeScaffoldState extends State<LawyerHomeScaffold> {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         elevation: 3,
-        bottom: const PreferredSize(preferredSize: Size(10, 10), child: Column()),
-        shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        bottom:
+            const PreferredSize(preferredSize: Size(10, 10), child: Column()),
+        shape:
+            ContinuousRectangleBorder(borderRadius: BorderRadius.circular(10)),
         shadowColor: Colors.grey,
         title: Row(
           children: [
@@ -60,7 +62,9 @@ class _LawyerHomeScaffoldState extends State<LawyerHomeScaffold> {
               radius: 25,
               backgroundColor: getRandomColor(),
               child: Text(
-                '${userData['name']}'[0].toUpperCase(),
+                userData['name'] != null && userData['name']!.isNotEmpty
+                      ? '${userData['name']}'[0].toUpperCase()
+                      : '',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -79,10 +83,9 @@ class _LawyerHomeScaffoldState extends State<LawyerHomeScaffold> {
             ),
           ],
         ),
-
         actions: [
           Padding(
-            padding: const EdgeInsets.only(left: 5.0,top: 3),
+            padding: const EdgeInsets.only(left: 5.0, top: 3),
             child: IconButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/chat_history');
@@ -91,38 +94,46 @@ class _LawyerHomeScaffoldState extends State<LawyerHomeScaffold> {
                 iconSize: 30),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 5.0,top: 3),
+            padding: const EdgeInsets.only(left: 5.0, top: 3),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Navigator.pushNamed(context, '/chat_history');
+                  Navigator.pushNamed(context, '/chat_page', arguments: {
+                    'clientId': '0d155888-2cec-4b49-80bd-dd52c5a1888e',
+                    'clientName': 'Aswin P'
+                  });
+                },
                 icon: const Icon(Icons.notifications_none_outlined),
                 iconSize: 30),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 5.0,right: 4,top: 3),
+            padding: const EdgeInsets.only(left: 5.0, right: 4, top: 3),
             child: IconButton(
                 onPressed: () {
                   supabase.auth.signOut();
                   removeUserData();
-                  Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-;
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/', (route) => false);
+                  ;
                 },
                 icon: const Icon(Icons.logout),
                 iconSize: 30),
           )
         ],
       ),
-
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.pushNamed(context, '/chatbot');
-        },
-        backgroundColor: const Color.fromARGB(255, 19, 94, 155),
-        tooltip: "Talk to bot",
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-        child: const Icon(Icons.sms, color: Colors.white,size: 26,)
-      ),
-
-      
+          onPressed: () {
+            Navigator.pushNamed(context, '/chatbot');
+          },
+          backgroundColor: const Color.fromARGB(255, 19, 94, 155),
+          tooltip: "Talk to bot",
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+          child: const Icon(
+            Icons.sms,
+            color: Colors.white,
+            size: 26,
+          )),
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [

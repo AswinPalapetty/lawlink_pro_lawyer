@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:lawlink_lawyer/pages/call_requests.dart';
+import 'package:lawlink_lawyer/pages/case_requests.dart';
+import 'package:lawlink_lawyer/pages/chat_history.dart';
+import 'package:lawlink_lawyer/pages/chat_page.dart';
+import 'package:lawlink_lawyer/pages/complete_profile.dart';
+import 'package:lawlink_lawyer/pages/lawyer_home.dart';
 import 'package:lawlink_lawyer/pages/login.dart';
 import 'package:lawlink_lawyer/pages/main_home.dart';
 import 'package:lawlink_lawyer/pages/signup.dart';
+import 'package:lawlink_lawyer/pages/update_profile.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lawlink_lawyer/utils/session.dart';
@@ -45,6 +52,13 @@ class MyApp extends StatelessWidget {
         '/':(context) => const Home(),
         '/login':(context) => const Login(),
         '/signup':(context) => const Signup(),
+        '/home':(context) => const LawyerHome(),
+        '/complete_profile':(context) => const CompleteProfile(),
+        '/chat_history':(context) => const ChatHistory(),
+        '/chat_page':(context) => const ChatPage(),
+        '/call_requests':(context) => const CallRequests(),
+        '/case_requests':(context) => const CaseRequests(),
+        '/update_profile':(context) => const UpdateProfile()
       },
 
       initialRoute: initialRoute,
