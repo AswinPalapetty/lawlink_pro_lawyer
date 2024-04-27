@@ -22,6 +22,10 @@ class Home extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 45.0, fontWeight: FontWeight.w600)),
                         TextSpan(
+                            text: "(For Lawyer)\n",
+                            style: TextStyle(
+                                fontSize: 22.0, height: 1.3, fontStyle: FontStyle.italic)),
+                        TextSpan(
                             text:
                                 "Revolutionizing Client-Lawyer Collaboration with Seamless Communication",
                             style: TextStyle(fontSize: 17, height: 1.6))

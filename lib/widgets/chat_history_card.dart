@@ -4,7 +4,6 @@ class ChatHistoryCard extends StatelessWidget {
   final String name;
   final String latestMessage;
   final String latestMessageTime;
-  final String imageUrl;
   final VoidCallback? onTap;
 
   const ChatHistoryCard({
@@ -12,7 +11,6 @@ class ChatHistoryCard extends StatelessWidget {
     required this.name,
     required this.latestMessage,
     required this.latestMessageTime,
-    required this.imageUrl,
     this.onTap,
   });
 
@@ -41,9 +39,6 @@ class ChatHistoryCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(imageUrl),
-              ),
               title: Text(
                 name,
                 style: const TextStyle(

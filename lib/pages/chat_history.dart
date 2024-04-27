@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lawlink_lawyer/utils/session.dart';
 import 'package:lawlink_lawyer/widgets/chat_history_card.dart';
+import 'package:lawlink_lawyer/widgets/progress_indicator.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ChatHistory extends StatefulWidget {
   const ChatHistory({super.key});
@@ -9,6 +12,51 @@ class ChatHistory extends StatefulWidget {
 }
 
 class _ChatHistoryState extends State<ChatHistory> {
+  bool isLoading = true;
+  late Map<String, String> user;
+  late List<Map<String, dynamic>> clients = [];
+  @override
+  void initState() {
+    super.initState();
+    fetchChats();
+  }
+
+  fetchChats() async {
+    user = await SessionManagement.getUserData();
+    print(user['userId']);
+    final result = await Supabase.instance.client
+        .from('message')
+        .select('user_from')
+        .eq('user_to', user['userId']!);
+    Set<String> uniqueUserFrom = <String>{};
+    if (result.isNotEmpty) {
+      for (var clientId in result) {
+        uniqueUserFrom
+            .add(clientId['user_from']); // Add user_from value to the Set
+      }
+      for (var userFrom in uniqueUserFrom) {
+        //print(clientId);
+        final client = await Supabase.instance.client
+            .from('clients')
+            .select()
+            .eq('user_id', userFrom)
+            .single();
+        clients.add(client);
+      }
+    }
+    print(clients);
+    // List<String> userIds = List<String>.from(result[0]['lawyers']);
+    // for (var userId in userIds) {
+    //   final lawyer = await Supabase.instance.client.from('lawyers').select().eq('user_id', userId).single();
+    //   lawyer['practice_areas'] = lawyer['practice_areas'].join(',');
+    //   print(lawyer);
+    //   favoriteLawyers.add(lawyer);
+    // }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,31 +69,28 @@ class _ChatHistoryState extends State<ChatHistory> {
             ),
           ),
         ),
-        body: ListView(
-        children: [
-          ChatHistoryCard(
-            name: 'John Doe',
-            latestMessage: 'Hi there!',
-            latestMessageTime: '10:30 AM',
-            imageUrl: 'https://ehygpasjbxqmlqqmomhg.supabase.co/storage/v1/object/public/lawyer_profile//3a99eeb3-d72f-4730-9027-86954641b0b5/profile?t=1713194928594',
-            onTap: () => {
-              Navigator.pushNamed(context, '/chat_page', arguments: {
-                    'clientId': '0d155888-2cec-4b49-80bd-dd52c5a1888e',
-                    'clientName': 'Aswin P'
-                  })
-            }
-          ),
-          ChatHistoryCard(
-            name: 'Jane Smith',
-            latestMessage: 'How are you?',
-            latestMessageTime: 'Yesterday',
-            imageUrl: 'https://ehygpasjbxqmlqqmomhg.supabase.co/storage/v1/object/public/lawyer_profile//3a99eeb3-d72f-4730-9027-86954641b0b5/profile?t=1713194928594',
-            onTap: () => {
-              Navigator.pushNamed(context, '/chat_page')
-            },
-          ),
-        ],
-      ),
-    );
+        body: isLoading
+            ? const CustomProgressIndicator()
+            : clients.isNotEmpty
+                ? ListView.builder(
+                    itemCount: clients.length,
+                    itemBuilder: (context, index) {
+                      final data = clients[index];
+                      return ChatHistoryCard(
+                        latestMessage: '',
+                        latestMessageTime: '',
+                        name: data['name'] ??
+                            '', // Replace 'name' with the actual field name
+                        onTap: () {
+                          Navigator.pushNamed(context, '/chat_page',
+                              arguments: {
+                                'clientId': data['user_id'],
+                                'clientName': data['name']
+                              });
+                        },
+                      );
+                    },
+                  )
+                : const Center(child: Text("No chats found")));
   }
 }
