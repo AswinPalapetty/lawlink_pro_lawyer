@@ -1,4 +1,6 @@
 import 'dart:math';
+// import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
+// import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:lawlink_lawyer/utils/session.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -16,6 +18,7 @@ class LawyerHomeScaffold extends StatefulWidget {
 class _LawyerHomeScaffoldState extends State<LawyerHomeScaffold> {
   Map<String, String> userData = {};
   final supabase = Supabase.instance.client;
+  //int _selectedIndex = 0;
 
   @override
   void initState() {
@@ -43,6 +46,12 @@ class _LawyerHomeScaffoldState extends State<LawyerHomeScaffold> {
       random.nextInt(256),
     );
   }
+
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -98,12 +107,12 @@ class _LawyerHomeScaffoldState extends State<LawyerHomeScaffold> {
             child: IconButton(
                 onPressed: () {
                   // Navigator.pushNamed(context, '/chat_history');
-                  Navigator.pushNamed(context, '/chat_page', arguments: {
+                  Navigator.pushNamed(context, '/manage_cases', arguments: {
                     'clientId': '0d155888-2cec-4b49-80bd-dd52c5a1888e',
                     'clientName': 'Aswin P'
                   });
                 },
-                icon: const Icon(Icons.notifications_none_outlined),
+                icon: const Icon(Icons.manage_accounts),
                 iconSize: 30),
           ),
           Padding(
@@ -114,13 +123,41 @@ class _LawyerHomeScaffoldState extends State<LawyerHomeScaffold> {
                   removeUserData();
                   Navigator.pushNamedAndRemoveUntil(
                       context, '/', (route) => false);
-                  ;
                 },
                 icon: const Icon(Icons.logout),
                 iconSize: 30),
           )
         ],
       ),
+      // bottomNavigationBar: CurvedNavigationBar(
+      //   backgroundColor: Colors.blue,
+      //   index: _selectedIndex,
+      //   items: const [
+      //     CurvedNavigationBarItem(
+      //       child: Icon(Icons.home_outlined),
+      //       label: 'Home',
+      //     ),
+      //     CurvedNavigationBarItem(
+      //       child: Icon(Icons.group),
+      //       label: 'Cases',
+      //     ),
+      //     CurvedNavigationBarItem(
+      //       child: Icon(Icons.newspaper_outlined),
+      //       label: 'News',
+      //     ),
+      //     CurvedNavigationBarItem(
+      //       child: Icon(Icons.group),
+      //       label: 'Athletes',
+      //     ),
+      //     CurvedNavigationBarItem(
+      //       child: Icon(Icons.person),
+      //       label: 'Profile',
+      //     ),
+      //   ],
+      //   onTap: (index) {
+      //     _onItemTapped(index);
+      //   },
+      // ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.pushNamed(context, '/chatbot');

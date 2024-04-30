@@ -4,12 +4,17 @@ class CaseRequestCard extends StatelessWidget {
   final String clientName;
   final String subject;
   final String matter;
+  final void Function()? onAcceptpressed;
+  final void Function()? onRejectpressed;
+  
 
   const CaseRequestCard({
     super.key,
     required this.clientName,
     required this.subject,
     required this.matter,
+    this.onAcceptpressed,
+    this.onRejectpressed
   });
 
   @override
@@ -67,9 +72,7 @@ class CaseRequestCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                      onPressed: () {
-                        // Add your accept logic here
-                      },
+                      onPressed: onAcceptpressed,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
                         shape: RoundedRectangleBorder(
@@ -85,9 +88,7 @@ class CaseRequestCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     ElevatedButton(
-                      onPressed: () {
-                        // Add your accept logic here
-                      },
+                      onPressed: onRejectpressed,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
                         shape: RoundedRectangleBorder(

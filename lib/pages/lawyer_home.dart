@@ -43,7 +43,7 @@ class _LawyerHomeState extends State<LawyerHome> {
             icon: Icons.phone_callback,
             optionHeading: 'Call Requests',
             onTap: () {
-              Navigator.pushNamed(context, '/call_requests');
+              Navigator.pushNamed(context, '/call_requests', arguments: { 'userId': user['userId'] });
             },
           ),
         ),
@@ -53,7 +53,7 @@ class _LawyerHomeState extends State<LawyerHome> {
             icon: Icons.cases_rounded,
             optionHeading: 'Case requests',
             onTap: () {
-              Navigator.pushNamed(context, '/case_requests');
+              Navigator.pushNamed(context, '/case_requests', arguments: { 'userId': user['userId'] });
             },
           ),
         ),

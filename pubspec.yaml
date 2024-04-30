@@ -44,6 +44,7 @@ dependencies:
   data_filters: ^1.0.2
   image_picker: ^1.0.8
   timeago: ^3.6.1
+  curved_labeled_navigation_bar: ^2.0.2
 
 dev_dependencies:
   flutter_test:

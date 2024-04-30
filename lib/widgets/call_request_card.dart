@@ -5,6 +5,8 @@ class CallRequestCard extends StatelessWidget {
   final String dateTime;
   final int hours;
   final String matter;
+  final void Function()? onAcceptpressed;
+  final void Function()? onRejectpressed;
 
   const CallRequestCard({
     super.key,
@@ -12,6 +14,8 @@ class CallRequestCard extends StatelessWidget {
     required this.dateTime,
     required this.hours,
     required this.matter,
+    this.onAcceptpressed,
+    this.onRejectpressed
   });
 
   @override
@@ -73,9 +77,7 @@ class CallRequestCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                      onPressed: () {
-                        // Add your accept logic here
-                      },
+                      onPressed: onAcceptpressed,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
                         shape: RoundedRectangleBorder(
@@ -91,9 +93,7 @@ class CallRequestCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     ElevatedButton(
-                      onPressed: () {
-                        // Add your accept logic here
-                      },
+                      onPressed: onRejectpressed,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
                         shape: RoundedRectangleBorder(
