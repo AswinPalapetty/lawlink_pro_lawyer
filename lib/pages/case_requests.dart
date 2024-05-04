@@ -119,8 +119,8 @@ class _CaseRequestsState extends State<CaseRequests> {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text('Reject Case'),
-                                    content: Text(
+                                    title: const Text('Reject Case'),
+                                    content: const Text(
                                         'Are you sure you want to reject this case?'),
                                     actions: <Widget>[
                                       TextButton(

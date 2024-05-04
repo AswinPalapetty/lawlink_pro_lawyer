@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lawlink_lawyer/pages/add_status.dart';
 import 'package:lawlink_lawyer/pages/call_requests.dart';
 import 'package:lawlink_lawyer/pages/case_requests.dart';
 import 'package:lawlink_lawyer/pages/chat_history.dart';
@@ -7,6 +8,8 @@ import 'package:lawlink_lawyer/pages/complete_profile.dart';
 import 'package:lawlink_lawyer/pages/lawyer_home.dart';
 import 'package:lawlink_lawyer/pages/login.dart';
 import 'package:lawlink_lawyer/pages/main_home.dart';
+import 'package:lawlink_lawyer/pages/manage_cases.dart';
+import 'package:lawlink_lawyer/pages/open_case.dart';
 import 'package:lawlink_lawyer/pages/signup.dart';
 import 'package:lawlink_lawyer/pages/update_profile.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -58,7 +61,10 @@ class MyApp extends StatelessWidget {
         '/chat_page':(context) => const ChatPage(),
         '/call_requests':(context) => const CallRequests(),
         '/case_requests':(context) => const CaseRequests(),
-        '/update_profile':(context) => const UpdateProfile()
+        '/update_profile':(context) => const UpdateProfile(),
+        '/manage_cases':(context) => const ManageCases(),
+        '/open_case':(context) => const OpenCase(),
+        '/add_status':(context) => const AddStatus()
       },
 
       initialRoute: initialRoute,

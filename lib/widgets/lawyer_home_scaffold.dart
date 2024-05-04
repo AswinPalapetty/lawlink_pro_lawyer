@@ -70,24 +70,34 @@ class _LawyerHomeScaffoldState extends State<LawyerHomeScaffold> {
             CircleAvatar(
               radius: 25,
               backgroundColor: getRandomColor(),
-              child: Text(
-                userData['name'] != null && userData['name']!.isNotEmpty
-                      ? '${userData['name']}'[0].toUpperCase()
-                      : '',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/home');
+                },
+                child: Text(
+                  userData['name'] != null && userData['name']!.isNotEmpty
+                        ? '${userData['name']}'[0].toUpperCase()
+                        : '',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
 
             const SizedBox(width: 10), // Space between avatar and text
-            Text(
-              'Hi, ${userData['name']}',
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/home');
+              },
+              child: Text(
+                'Hi, ${userData['name']}',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
           ],
