@@ -139,35 +139,6 @@ class _LawyerHomeScaffoldState extends State<LawyerHomeScaffold> {
           )
         ],
       ),
-      // bottomNavigationBar: CurvedNavigationBar(
-      //   backgroundColor: Colors.blue,
-      //   index: _selectedIndex,
-      //   items: const [
-      //     CurvedNavigationBarItem(
-      //       child: Icon(Icons.home_outlined),
-      //       label: 'Home',
-      //     ),
-      //     CurvedNavigationBarItem(
-      //       child: Icon(Icons.group),
-      //       label: 'Cases',
-      //     ),
-      //     CurvedNavigationBarItem(
-      //       child: Icon(Icons.newspaper_outlined),
-      //       label: 'News',
-      //     ),
-      //     CurvedNavigationBarItem(
-      //       child: Icon(Icons.group),
-      //       label: 'Athletes',
-      //     ),
-      //     CurvedNavigationBarItem(
-      //       child: Icon(Icons.person),
-      //       label: 'Profile',
-      //     ),
-      //   ],
-      //   onTap: (index) {
-      //     _onItemTapped(index);
-      //   },
-      // ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.pushNamed(context, '/chatbot');

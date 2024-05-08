@@ -12,6 +12,7 @@ import 'package:lawlink_lawyer/pages/manage_cases.dart';
 import 'package:lawlink_lawyer/pages/open_case.dart';
 import 'package:lawlink_lawyer/pages/signup.dart';
 import 'package:lawlink_lawyer/pages/update_profile.dart';
+import 'package:lawlink_lawyer/widgets/chatbot.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lawlink_lawyer/utils/session.dart';
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
         '/update_profile':(context) => const UpdateProfile(),
         '/manage_cases':(context) => const ManageCases(),
         '/open_case':(context) => const OpenCase(),
+        '/chatbot':(context) => const ChatBot(),
         '/add_status':(context) => const AddStatus()
       },
 
